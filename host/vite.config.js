@@ -8,8 +8,8 @@ export default defineConfig({
     federation({
       name: "host",
       remotes: {
-        alert_sender: "http://localhost:5174/assets/remoteEntry.js",
-        alert_dashboard: "http://localhost:5175/assets/remoteEntry.js",
+        alert_sender: "http://127.0.0.1:5174/assets/remoteEntry.js",
+        alert_dashboard: "http://127.0.0.1:5175/assets/remoteEntry.js",
       },
       shared: ["react", "react-dom", "styled-components"],
     }),
@@ -18,6 +18,7 @@ export default defineConfig({
     target: "esnext",
   },
   server: {
+    host: "127.0.0.1",
     port: 5173,
     strictPort: true,
   },
