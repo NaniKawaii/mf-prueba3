@@ -8,9 +8,9 @@ Arquitectura basada en microfrontends con **1 Host (Shell)** y **2 microfrontend
 
 ## Puertos
 
-- Host: `http://localhost:5173`
-- Alert Sender: `http://localhost:5174`
-- Alert Dashboard: `http://localhost:5175`
+- Host: `http://127.0.0.1:5173`
+- Alert Sender: `http://127.0.0.1:5174`
+- Alert Dashboard: `http://127.0.0.1:5175`
 
 ## Cómo ejecutar
 
@@ -33,7 +33,7 @@ Arquitectura basada en microfrontends con **1 Host (Shell)** y **2 microfrontend
    npm run dev
    ```
 
-Abrir el Host en `http://localhost:5173`.
+Abrir el Host en `http://127.0.0.1:5173`.
 
 ## Requisitos evaluados (cómo se resolvieron)
 
@@ -72,4 +72,3 @@ La comunicación entre microfrontends se hace por **evento del DOM** (CustomEven
   - `window.addEventListener("academic-alert", handler)`
 
 Este mecanismo evita acoplamiento directo (no hay imports entre microfrontends).
-

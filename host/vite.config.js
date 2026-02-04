@@ -8,8 +8,10 @@ export default defineConfig({
     federation({
       name: "host",
       remotes: {
-        alert_sender: "http://127.0.0.1:5174/assets/remoteEntry.js",
-        alert_dashboard: "http://127.0.0.1:5175/assets/remoteEntry.js",
+        // In dev, the federation plugin serves the entry at /remoteEntry.js reliably.
+        // (Depending on Vite/plugin version, /assets/remoteEntry.js may 404 intermittently.)
+        alert_sender: "http://127.0.0.1:5174/remoteEntry.js",
+        alert_dashboard: "http://127.0.0.1:5175/remoteEntry.js",
       },
       shared: ["react", "react-dom", "styled-components"],
     }),
