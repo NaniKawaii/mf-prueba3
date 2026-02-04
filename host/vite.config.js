@@ -24,7 +24,7 @@ export default defineConfig({
         },
       },
       shared: ["react", "react-dom", "styled-components"],
-      // Disable dts plugin since we're using JSX not TypeScript
+      // Disable TypeScript declaration file generation (not needed for JSX projects)
       dts: false,
     }),
   ],
