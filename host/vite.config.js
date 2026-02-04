@@ -1,6 +1,6 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import federation from "@originjs/vite-plugin-federation";
+import { federation } from "@module-federation/vite";
 
 export default defineConfig({
   plugins: [
@@ -8,12 +8,24 @@ export default defineConfig({
     federation({
       name: "host",
       remotes: {
-        // In dev, the federation plugin serves the entry at /remoteEntry.js reliably.
-        // (Depending on Vite/plugin version, /assets/remoteEntry.js may 404 intermittently.)
-        alert_sender: "http://127.0.0.1:5174/remoteEntry.js",
-        alert_dashboard: "http://127.0.0.1:5175/remoteEntry.js",
+        alert_sender: {
+          type: "module",
+          name: "alert_sender",
+          entry: "http://127.0.0.1:5174/remoteEntry.js",
+          entryGlobalName: "alert_sender",
+          shareScope: "default",
+        },
+        alert_dashboard: {
+          type: "module",
+          name: "alert_dashboard",
+          entry: "http://127.0.0.1:5175/remoteEntry.js",
+          entryGlobalName: "alert_dashboard",
+          shareScope: "default",
+        },
       },
       shared: ["react", "react-dom", "styled-components"],
+      // Disable TypeScript declaration file generation (not needed for JSX projects)
+      dts: false,
     }),
   ],
   build: {
@@ -23,5 +35,6 @@ export default defineConfig({
     host: "127.0.0.1",
     port: 5173,
     strictPort: true,
+    origin: "http://127.0.0.1:5173",
   },
 });

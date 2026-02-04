@@ -1,6 +1,6 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import federation from "@originjs/vite-plugin-federation";
+import { federation } from "@module-federation/vite";
 
 export default defineConfig({
   plugins: [
@@ -12,6 +12,8 @@ export default defineConfig({
         "./App": "./src/App.jsx",
       },
       shared: ["react", "react-dom", "styled-components"],
+      // Disable TypeScript declaration file generation (not needed for JSX projects)
+      dts: false,
     }),
   ],
   build: {
@@ -22,5 +24,6 @@ export default defineConfig({
     port: 5175,
     strictPort: true,
     cors: true,
+    origin: "http://127.0.0.1:5175",
   },
 });
